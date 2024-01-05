@@ -10,6 +10,8 @@ import { useThree } from "@react-three/fiber";
 import { useAtom } from "jotai";
 import { useControls } from "leva";
 import { useEffect, useRef } from "react";
+
+//local imports
 import { slideAtom } from "./Overlay";
 import { Scene } from "./Scene";
 
@@ -108,6 +110,7 @@ const CameraHandler = ({ slideDistance }) => {
     moveToSlide();
     lastSlide.current = slide;
   }, [slide]);
+
   return (
     <CameraControls
       ref={cameraControls}
@@ -127,6 +130,7 @@ const CameraHandler = ({ slideDistance }) => {
 
 export const Experience = () => {
   const viewport = useThree((state) => state.viewport);
+
   const { slideDistance } = useControls({
     slideDistance: {
       value: 1,
@@ -134,6 +138,7 @@ export const Experience = () => {
       max: 10,
     },
   });
+
   return (
     <>
       <ambientLight intensity={0.2} />

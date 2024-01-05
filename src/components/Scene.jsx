@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import {
+  useGLTF,
   AccumulativeShadows,
   Environment,
   Lightformer,
@@ -6,16 +8,17 @@ import {
   PerspectiveCamera,
   RandomizedLight,
   Sphere,
-  useGLTF,
 } from "@react-three/drei";
-
 import * as THREE from "three";
 
-import React, { useEffect } from "react";
+// local imports
 import { DEG2RAD } from "three/src/math/MathUtils";
 
 export const Scene = ({ mainColor, path, ...props }) => {
   const { nodes, materials, scene } = useGLTF(path);
+
+  const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
+
   useEffect(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
@@ -24,7 +27,7 @@ export const Scene = ({ mainColor, path, ...props }) => {
       }
     });
   }, [scene]);
-  const ratioScale = Math.min(1.2, Math.max(0.5, window.innerWidth / 1920));
+
   return (
     <>
       <color attach="background" args={["#ffffff"]} />

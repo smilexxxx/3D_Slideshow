@@ -8,6 +8,7 @@ export const Overlay = () => {
   const [slide, setSlide] = useAtom(slideAtom);
   const [displaySlide, setDisplaySlide] = useState(slide);
   const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     setTimeout(() => {
       setVisible(true);
@@ -21,6 +22,7 @@ export const Overlay = () => {
       setVisible(true);
     }, 2600);
   }, [slide]);
+
   return (
     <>
       <div
